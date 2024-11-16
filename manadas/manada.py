@@ -16,6 +16,7 @@ class Manada:
         for i in range(numero_animales):
             id_animal = self.id + str(i)
             animal = self.anadir_animal(id_animal, self.posicion_inicial)
+            
             self.posicion_inicial = self.entorno.obtener_casilla_adyacente_vacia(self.posicion_inicial)       
 
     def anadir_animal(self, id, posicion):
@@ -30,7 +31,7 @@ class Manada:
             animal = Cebra(id, self.entorno, self, posicion)
             self.entorno.cebras.append(animal)
         animal.start()
-        self.entorno.anadir_animal(animal, posicion)  
+        self.posicion_inicial.anadir_animal(animal)
         self.animales.append(animal)
         return animal
 

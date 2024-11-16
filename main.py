@@ -1,8 +1,6 @@
 import os
 import time
-from animales.leon import Leon
 from juego import Juego
-from tablero.casilla import Casilla
 
 
 def main():  

@@ -43,7 +43,6 @@ class Juego:
         restohienas = self.configuracion.numero_hienas % self.configuracion.manadas_hienas 
         cebrasxmanada = self.configuracion.numero_cebras // self.configuracion.manadas_cebras
         restocebras = self.configuracion.numero_cebras % self.configuracion.manadas_cebras     
-            
         
         for _ in range(self.configuracion.manadas_leones):
             nleones = leonesxmanada
@@ -51,7 +50,6 @@ class Juego:
                 nleones += 1
                 restoleones -= 1
             self.manadas_leones.append(ManadaLeon(self,self.casilla_aleatoria_vacia(), nleones))
-
         for _ in range(self.configuracion.manadas_hienas):
             nhienas = hienasxmanada
             if restohienas > 0:
@@ -65,7 +63,6 @@ class Juego:
                 ncebras += 1
                 restocebras -= 1
             self.manadas_cebras.append(ManadaCebra(self,self.casilla_aleatoria_vacia(), ncebras))                
-    
     def finalizar(self):
         listas_animales = [self.leones, self.cebras, self.hienas]
         for lista in listas_animales:
@@ -86,6 +83,40 @@ class Juego:
     def confirmar_ganador():
         pass
 
+    def obtener_casilla_adyacente_vacia(self, casilla):
+        while True:
+            casilla_aux  = random.choice(self.casillas_adyacente(casilla))
+            if self.casilla_existe_vacia(casilla_aux) and not casilla.__eq__(casilla_aux):
+                return casilla_aux
+
+    def casilla_aleatoria_vacia(self):
+        while True:
+            x = random.randint(0,self.configuracion.tamaño - 1)
+            y = random.randint(0,self.configuracion.tamaño - 1)
+            casilla = self.buscar_casilla(x,y)
+            if self.casilla_existe_vacia(casilla):
+                return casilla
+
+    def casilla_existe_vacia(self, casilla):
+        return self.existe_casilla(casilla.x, casilla.y) and casilla.es_vacia()
+    
+    def existe_casilla(self, x,y):
+        return x >= 0 and x < self.configuracion.tamaño and y >= 0 and y < self.configuracion.tamaño
+
+    def casillas_adyacente(self,casilla):
+        casillas_adyacentes = []
+        posibles_movimientos = [(0,0),(-1, -1), (-1, 0), (-1, 1),(0, -1),(0, 1),(1, -1), (1, 0), (1, 1)]  
+        random.shuffle(posibles_movimientos)      
+        for dx, dy in posibles_movimientos:
+            x = casilla.x
+            y = casilla.y            
+            if self.existe_casilla(x + dx, y + dy):
+                casillas_adyacentes.append(self.buscar_casilla(x + dx, y + dy))
+        return casillas_adyacentes
+    
+    def buscar_casilla(self,x,y):
+        return self.entorno[y][x]
+
     def __str__(self):
         matriz_str = ""
         tamaño = self.configuracion.tamaño
@@ -96,46 +127,4 @@ class Juego:
             matriz_str += f"| {fila_str} |\n"
             matriz_str += "—" * (6 * tamaño) + "\n"
         return matriz_str
-         
-
-    def obtener_casilla_adyacente_vacia(self, casilla):
-        while True:
-            casilla_aux  = random.choice(self.casillas_adyacente(casilla))
-            if self.casilla_existe_vacia(casilla_aux) and not casilla.__eq__(casilla_aux):
-                return casilla_aux
-            
-    
-    def anadir_animal(self, animal, posicion):
-        try:
-            self.entorno[posicion.x][posicion.y].animal = animal
-        except IndexError:
-            print("Fuera de rango: " + str(posicion.x) +", " + str(posicion.y) + "animal: " + str(animal.id))
-    
-    def eliminar_animal(self, posicion):
-        self.entorno[posicion.x][posicion.y].vaciar()
-
-    def casilla_aleatoria_vacia(self):
-        while True:
-            x = random.randint(0,self.configuracion.tamaño)
-            y = random.randint(0,self.configuracion.tamaño)
-            casilla = Casilla(x,y)
-            if self.casilla_existe_vacia(casilla):
-                return casilla
-
-    def casilla_existe_vacia(self, casilla):
-        return self.existe(casilla) and self.es_vacia(casilla)
-    
-    def existe(self, casilla):
-        return casilla.x >= 0 and casilla.x < self.configuracion.tamaño and casilla.y >= 0 and casilla.y < self.configuracion.tamaño
-
-    def casillas_adyacente(self,casilla):
-        casillas_adyacentes = []
-        posibles_movimientos = [(0,0),(-1, -1), (-1, 0), (-1, 1),(0, -1),(0, 1),(1, -1), (1, 0), (1, 1)]        
-        for dx, dy in posibles_movimientos:
-            casilla = Casilla(casilla.x, casilla.y)
-            if self.existe(casilla):
-                casillas_adyacentes.append(Casilla(casilla.x + dx, casilla.y + dy))
-        return casillas_adyacentes
-    
-    def es_vacia(self, casilla):
-        return self.entorno[casilla.x][casilla.y].es_vacia()
+                 

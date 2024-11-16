@@ -20,13 +20,11 @@ class Animal(Thread):
     def mover(self):
         lista_movimientos = self.comprobar_adyacentes()
         movimiento = random.choice(lista_movimientos)
-
         #print("Soy: " + str(self.id) + " y me he movido a:( " + str(self.posicion.x) + ", " + str(self.posicion.y) + ")")
-        self.posicion.__str__()        
-        self.entorno.eliminar_animal(self.posicion)
+        #self.posicion.__str__()        
         self.posicion.vaciar()
         self.posicion = movimiento
-        self.entorno.anadir_animal(self, self.posicion)
+        self.posicion.anadir_animal(self)
         for casilla in lista_movimientos:
             casilla.desbloquear()
         
@@ -39,8 +37,10 @@ class Animal(Thread):
         while not encontrado:
             lista_posibles_movimientos = self.entorno.casillas_adyacente(self.posicion)
             lista_movimientos = []
+            #print("Casilla actual: " + self.posicion.__str__())
             for casilla in lista_posibles_movimientos:
-                if not casilla.es_bloqueada() and self.entorno.existe(casilla) and self.entorno.es_vacia(casilla):
+                #print(casilla.__str__() + str(casilla.es_bloqueada()) + " " + str(self.entorno.existe_casilla(casilla.x, casilla.y)) + " "  + str(casilla.es_vacia()))
+                if not casilla.es_bloqueada() and self.entorno.existe_casilla(casilla.x, casilla.y) and casilla.es_vacia():
                     casilla.bloquear()
                     lista_movimientos.append(casilla)
                     encontrado = True

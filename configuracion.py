@@ -52,8 +52,8 @@ class Configuracion:
         self.numero_hienas = self.numero_leones * 3
         self.numero_cebras = self.numero_leones * 6          
         """
-        self.tamaño = 10
-        self.numero_leones = 2
+        self.tamaño = 4
+        self.numero_leones = 1
         self.numero_hienas = self.numero_leones * 3
         self.numero_cebras = self.numero_leones * 6
         self.manadas_leones = 1

@@ -21,20 +21,6 @@ class Leon(Animal):
 
     def velocidad_random(self):
         return random.uniform(1.5, 2.5)
-    
-    def comprobar_adyacentes_caza(self):
-        encontrado = False
-        while not encontrado:
-            lista_posibles_movimientos = self.entorno.casillas_adyacente(self.posicion)
-            lista_cazas = []
-            for casilla in lista_posibles_movimientos:
-                if not casilla.es_bloqueada() and self.entorno.existe(casilla) and self.entorno.es_vacia(casilla):
-                    casilla.bloquear()
-                    lista_movimientos.append(casilla)
-                    encontrado = True
-            if len(lista_movimientos) == 0:
-                time.sleep(0.4)
-        return lista_movimientos
 
     def __str__(self):
         return f"{Fore.YELLOW}{super().__str__()}{Style.RESET_ALL}"
