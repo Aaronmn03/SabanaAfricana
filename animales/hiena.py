@@ -10,7 +10,8 @@ class Hiena(Animal):
     def run(self):
         time.sleep(self.velocidad)
         while self.activo:
-            super().mover() 
+            with self.posicion.lock:            
+                super().mover() 
             time.sleep(self.velocidad) 
         
     def cazar():

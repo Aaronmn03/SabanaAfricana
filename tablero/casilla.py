@@ -1,5 +1,7 @@
 import threading
 
+from animales.cebra import Cebra
+
 
 class Casilla:
     def __init__(self,x,y):
@@ -21,6 +23,9 @@ class Casilla:
     def es_vacia(self):
         return self.animal == None
     
+    def hay_cebra(self):
+        return isinstance(self.animal, Cebra)
+    
     def __eq__(self, other):
         if isinstance(other, Casilla):
             return self.x == other.x and self.y == other.y
@@ -37,3 +42,6 @@ class Casilla:
 
     def __str__(self):
         return "Soy ( " + str(self.x) + ", " + str(self.y) +") y tengo a " + str(self.animal)
+    
+    def __hash__(self):
+        return hash((self.x, self.y))

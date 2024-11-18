@@ -13,10 +13,10 @@ class Manada:
         self.id = str(self.__class__.numero_manadas) + id_tipo
         self.__class__.numero_manadas += 1
         self.id_tipo = id_tipo
+
         for i in range(numero_animales):
             id_animal = self.id + str(i)
             animal = self.anadir_animal(id_animal, self.posicion_inicial)
-            
             self.posicion_inicial = self.entorno.obtener_casilla_adyacente_vacia(self.posicion_inicial)       
 
     def anadir_animal(self, id, posicion):
@@ -34,4 +34,8 @@ class Manada:
         self.posicion_inicial.anadir_animal(animal)
         self.animales.append(animal)
         return animal
+    
+    def __str__(self):
+        return self.id
+    
 

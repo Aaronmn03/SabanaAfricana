@@ -18,6 +18,7 @@ class Animal(Thread):
         pass
 
     def mover(self):
+        
         lista_movimientos = self.comprobar_adyacentes()
         movimiento = random.choice(lista_movimientos)
         #print("Soy: " + str(self.id) + " y me he movido a:( " + str(self.posicion.x) + ", " + str(self.posicion.y) + ")")

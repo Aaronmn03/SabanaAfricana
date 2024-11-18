@@ -1,21 +1,24 @@
+import os
 import random
-from animales.leon import Leon
+import threading
+import time
 from configuracion import Configuracion
 from manadas.manada_cebra import ManadaCebra
 from manadas.manada_hiena import ManadaHiena
 from manadas.manada_leon import ManadaLeon
 from tablero.casilla import Casilla
 
-
+fps = 60
 class Juego:
     def __init__(self):
         self.configuracion = Configuracion()
         self.entorno = self.crear_entorno()
-        self.ganador = False
+        self.ganador = None
+        self.ganador_lock = threading.Lock()
         self.leones = []
         self.cebras = []
         self.hienas = []
-        self.crear_animales()
+        
 
     def crear_entorno(self):
         matriz_aux = []
@@ -30,8 +33,24 @@ class Juego:
         return matriz_aux
                     
 
-    def comenzar():
-        pass
+    def comenzar(self):
+        self.crear_animales()
+        while True:
+            try:
+                os.system("cls" if os.name == "nt" else "clear")
+                print(str(self))
+                time.sleep(1/fps) 
+                with self.ganador_lock:
+                    if self.ganador is not None:
+                        print("El ganador es: " + self.ganador.__str__())
+                        self.finalizar()
+                        break
+            except KeyboardInterrupt:
+                os.system("cls" if os.name == "nt" else "clear")
+                print("Juego interrumpido por el usuario. Esperando matar hilos")   
+                self.finalizar()      
+                print(str(self))            
+
 
     def crear_animales(self):
         self.manadas_leones = []
@@ -79,9 +98,8 @@ class Juego:
         else:
             print("Algunos hilos no se han detenido correctamente.")                    
 
-
-    def confirmar_ganador():
-        pass
+    def confirmar_ganador(self, manada):
+            self.ganador = manada
 
     def obtener_casilla_adyacente_vacia(self, casilla):
         while True:
@@ -116,6 +134,24 @@ class Juego:
     
     def buscar_casilla(self,x,y):
         return self.entorno[y][x]
+    
+    def num_animales_cercanos(self, posicion, visitadas=None):
+        if visitadas is None:
+            visitadas = set()
+
+        contador = 0
+        lista_posibilidades = self.casillas_adyacente(posicion)
+        while len(lista_posibilidades) != 0:
+            posicion_aux = lista_posibilidades.pop()
+            if posicion_aux in visitadas:
+                continue
+            else:
+                visitadas.add(posicion_aux)
+            if posicion_aux.animal is not None:
+                if isinstance(posicion_aux.animal,type(posicion.animal)):
+                    contador += 1
+                    contador += self.num_animales_cercanos(posicion_aux, visitadas)
+        return contador
 
     def __str__(self):
         matriz_str = ""
