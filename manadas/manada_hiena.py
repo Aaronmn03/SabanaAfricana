@@ -21,7 +21,7 @@ class ManadaHiena(Manada):
     def eliminar_animal(self, animal):
         animal.activo = False
         animal.join()
-
+        self.entorno.eliminar_animal(animal)
     
     def __str__(self):
         return super().__str__() + " con: " + str(self.puntuacion) + " pts."

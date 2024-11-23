@@ -2,6 +2,8 @@ import os
 import random
 import threading
 import time
+from animales.cebra import Cebra
+from animales.hiena import Hiena
 from configuracion import Configuracion
 from manadas.manada_cebra import ManadaCebra
 from manadas.manada_hiena import ManadaHiena
@@ -81,7 +83,15 @@ class Juego:
             if restocebras > 0:
                 ncebras += 1
                 restocebras -= 1
-            self.manadas_cebras.append(ManadaCebra(self,self.casilla_aleatoria_vacia(), ncebras))                
+            self.manadas_cebras.append(ManadaCebra(self,self.casilla_aleatoria_vacia(), ncebras)) 
+
+    def eliminar_animal(self, animal):
+        if isinstance(animal, Cebra):
+            self.cebras.remove(animal)
+        elif isinstance(animal, Hiena):  
+            self.hienas.remove(animal)  
+        else:
+            print("El animal no es ni una cebra ni una hiena")
     def finalizar(self):
         self.is_running = False
         listas_animales = [self.leones, self.cebras, self.hienas]

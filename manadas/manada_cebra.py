@@ -10,6 +10,7 @@ class ManadaCebra(Manada):
     def eliminar_animal(self, animal):
         animal.activo = False
         animal.join()
+        self.entorno.eliminar_animal(animal)
         print("Animal matado: " + animal.__str__())
         self.posicion_inicial = self.entorno.casilla_aleatoria_vacia()
         print("Posicion decidida")

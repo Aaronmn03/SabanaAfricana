@@ -66,7 +66,7 @@ class Hiena(Animal):
         for casilla in lista_posibles_movimientos:
             if not casilla.es_bloqueada() and self.entorno.existe_casilla(casilla.x, casilla.y) and casilla.hay_cebra():
                 casilla.bloquear()
-                print(self.__str__() + " -> " + casilla.__str__() + " Bloqueada")
+                #print(self.__str__() + " -> " + casilla.__str__() + " Bloqueada")
                 lista_caza.append(casilla)
         return lista_caza 
 
