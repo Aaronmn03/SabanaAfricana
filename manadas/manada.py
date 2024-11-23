@@ -34,9 +34,7 @@ class Manada:
             animal = Cebra(id, self.entorno, self, posicion)
             self.entorno.cebras.append(animal)
         self.numero_creadas += 1   
-        print("Obteniendo acceso a la posicion... " + self.posicion_inicial.__str__() + str(self.posicion_inicial.lock.locked())) 
         with self.posicion_inicial.lock:    
-            print("Acceso obtenido")
             self.posicion_inicial.anadir_animal(animal)
         self.animales.append(animal)
         animal.start()

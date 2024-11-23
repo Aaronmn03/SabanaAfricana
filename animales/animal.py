@@ -32,7 +32,7 @@ class Animal(Thread):
         self.posicion.anadir_animal(self)
         for casilla in lista_movimientos:
             casilla.desbloquear()
-            print(self.__str__() + " -> " + casilla.__str__() + " Desbloqueada")
+            #print(self.__str__() + " -> " + casilla.__str__() + " Desbloqueada")
         
 
     def descansar():
@@ -47,7 +47,7 @@ class Animal(Thread):
             #print(casilla.__str__() + str(casilla.es_bloqueada()) + " " + str(self.entorno.existe_casilla(casilla.x, casilla.y)) + " "  + str(casilla.es_vacia()))
             if not casilla.es_bloqueada() and self.entorno.existe_casilla(casilla.x, casilla.y) and casilla.es_vacia():
                 casilla.bloquear()
-                print(self.__str__() + " -> " + casilla.__str__() + " Bloqueada")
+                #print(self.__str__() + " -> " + casilla.__str__() + " Bloqueada")
                 lista_movimientos.append(casilla)   
         return lista_movimientos
 
