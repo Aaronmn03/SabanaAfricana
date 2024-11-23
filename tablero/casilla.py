@@ -1,6 +1,7 @@
 import threading
 
 from animales.cebra import Cebra
+from animales.hiena import Hiena
 
 
 class Casilla:
@@ -11,9 +12,11 @@ class Casilla:
         self.animal = None
 
     def bloquear(self):
+        #print(self.__str__() + "Es bloqueada")
         self.lock.acquire() 
         
     def desbloquear(self):
+        #print(self.__str__() + "Es desbloqueada")
         self.lock.release()
 
     def suma(self,dx,dy):
@@ -25,6 +28,12 @@ class Casilla:
     
     def hay_cebra(self):
         return isinstance(self.animal, Cebra)
+    
+    def hay_hiena(self):
+        return isinstance(self.animal, Hiena)
+    
+    def hay_presa(self):
+        return self.hay_hiena() or self.hay_cebra()
     
     def __eq__(self, other):
         if isinstance(other, Casilla):

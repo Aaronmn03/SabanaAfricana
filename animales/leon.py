@@ -5,6 +5,7 @@ from colorama import Fore, Style
 
 from animales.animal import Animal
 from animales.cebra import Cebra
+from animales.hiena import Hiena
 
 
 class Leon(Animal):
@@ -12,42 +13,68 @@ class Leon(Animal):
         super().__init__(id, entorno, manada, self.velocidad_random(), posicion_inicial)
 
     def run(self):
-
         time.sleep(self.velocidad)
         while self.activo:
-            with self.posicion.lock:
-                posibles_presas = self.comprobar_adyacentes_caza()
-                if not len(posibles_presas) == 0:
-                    self.cazar(posibles_presas)
-                else:
-                    super().mover() 
-            time.sleep(self.velocidad) 
+            posicion_aux = self.posicion
+            print(self.__str__() + "Esta intentando acceder a su posicion")
+            self.posicion.bloquear()    
+            print(self.__str__() + "Ha accedido al mutex de la posicion")
+            posibles_presas = self.comprobar_adyacentes_caza()
+            if not len(posibles_presas) == 0:
+                print("Voy a cazar" + self.__str__())
+                self.cazar(posibles_presas)
+            else:
+                super().mover() 
+            time.sleep(self.velocidad)
         
     def cazar(self, posibles_presas):
-        casilla = random.choice(posibles_presas)
-        presa = casilla.animal
-        if isinstance(presa, Cebra):
-            presa.notificar_caza()
-            with self.manada.lock:
-                self.manada.aumentar_puntuacion(1)
+        try:
+            casilla = random.choice(posibles_presas)
+            presa = casilla.animal
+            puntos = 0
+            print(type(presa).__name__ + " - >" + str(presa.__str__()))
+            if isinstance(presa, Cebra):
+                puntos = 1
+            if isinstance(presa, Hiena):
+                puntos = 2
+                if not self.comprobar_si_caza(casilla):
+                    self.posicion.desbloquear()
+                    return
             casilla.vaciar()
             self.posicion.vaciar()
+            posicion_aux = self.posicion
             self.posicion = casilla
+            posicion_aux.desbloquear()
             self.posicion.anadir_animal(self)
+            print("Notificando caza...")
+            presa.notificar_caza()
+            print("Caza notificada")
+            with self.manada.lock:
+                print("Aumentando puntos")
+                self.manada.aumentar_puntuacion(puntos)
+            print("Puntos aumentados")
+            print("Animal: " + super().__str__() + " ha cazado")
+        finally:
             for casilla in posibles_presas:
                 casilla.desbloquear()
-            print("Animal: " + super().__str__() + " ha cazado")
-        else:
-            print("No era una cebra wtf?")
+                print(self.__str__() + " -> " + casilla.__str__() + " Desbloqueada")
+        
 
     def comprobar_adyacentes_caza(self):
         lista_posibles_movimientos = self.entorno.casillas_adyacente(self.posicion)
         lista_caza = []
         for casilla in lista_posibles_movimientos:
-            if not casilla.es_bloqueada() and self.entorno.existe_casilla(casilla.x, casilla.y) and casilla.hay_cebra():
+            if self.entorno.existe_casilla(casilla.x, casilla.y) and casilla.hay_presa():
                 casilla.bloquear()
+                print(self.__str__() + " -> " + casilla.__str__() + " Bloqueada")
                 lista_caza.append(casilla)
         return lista_caza      
+    
+    def comprobar_si_caza(self, casilla):
+        n_apoyo = self.entorno.num_animales_cercanos(self.posicion)
+        n_otros = self.entorno.num_animales_cercanos(casilla)
+        print(self.__str__() + " Leones: " + str(n_apoyo) + " vs Hienas: " + str(n_otros))
+        return n_apoyo >= n_otros    
 
     def velocidad_random(self):
         return random.uniform(1.5, 2.5)

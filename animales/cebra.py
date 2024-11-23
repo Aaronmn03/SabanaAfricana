@@ -9,10 +9,13 @@ class Cebra(Animal):
     
     def run(self):
         time.sleep(self.velocidad)
-        while self.activo:
-            with self.posicion.lock:                
-                super().mover() 
-            time.sleep(self.velocidad) 
+        if self.activo:
+            while self.activo:
+                if not self.posicion.es_bloqueada():
+                    self.posicion.bloquear() 
+                    posicion_aux = self.posicion   
+                    super().mover() 
+                    time.sleep(self.velocidad) 
         
 
     def notificar_caza(self):
@@ -20,3 +23,6 @@ class Cebra(Animal):
 
     def velocidad_random(self):
         return random.uniform(2.75, 3.75)
+    
+    def __str__(self):
+        return super().__str__()

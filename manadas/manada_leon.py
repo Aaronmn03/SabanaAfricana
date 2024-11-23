@@ -8,11 +8,12 @@ class ManadaLeon(Manada):
         super().__init__(entorno ,posicion_inicial,numero_animales, 'L')
         self.puntuacion = 0
         self.lock = threading.Lock() 
+        
 
     def aumentar_puntuacion(self, aumento):
         self.puntuacion += aumento
         print("Manada: " + self.__str__())
-        if self.puntuacion >= 2:
+        if self.puntuacion >= 20:
             with self.entorno.ganador_lock:
                 self.entorno.confirmar_ganador(self)
     

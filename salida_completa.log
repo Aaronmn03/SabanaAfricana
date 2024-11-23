@@ -1,0 +1,205 @@
+————————————————————————
+|     | [90m0H1[0m | 3C0 |     |
+————————————————————————
+| [90m0H2[0m | [90m0H0[0m |     | 1C0 |
+————————————————————————
+|     | 0C1 | 1C1 | 2C0 |
+————————————————————————
+| 0C0 | [33m0L0[0m |     |     |
+————————————————————————
+
+————————————————————————
+|     | [90m0H1[0m | 3C0 |     |
+————————————————————————
+| [90m0H2[0m | [90m0H0[0m |     | 1C0 |
+————————————————————————
+|     | 0C1 | 1C1 | 2C0 |
+————————————————————————
+| 0C0 | [33m0L0[0m |     |     |
+————————————————————————
+
+[33m0L0[0m
+Soy ( 2, 2) y tengo a 1C1Es bloqueada
+[33m0L0[0m
+Soy ( 1, 2) y tengo a 0C1Es bloqueada
+[33m0L0[0m
+Soy ( 0, 3) y tengo a 0C0Es bloqueada
+————————————————————————
+|     | [90m0H1[0m | 3C0 |     |
+————————————————————————
+| [90m0H2[0m | [90m0H0[0m |     | 1C0 |
+————————————————————————
+|     | 0C1 | 1C1 | 2C0 |
+————————————————————————
+| 0C0 | [33m0L0[0m |     |     |
+————————————————————————
+
+2C0
+Soy ( 2, 1) y tengo a NoneEs bloqueada
+2C0
+Soy ( 2, 3) y tengo a NoneEs bloqueada
+2C0
+Soy ( 3, 3) y tengo a NoneEs bloqueada
+2C0
+Soy ( 3, 2) y tengo a NoneEs desbloqueada
+2C0
+Soy ( 2, 1) y tengo a NoneEs desbloqueada
+2C0
+Soy ( 2, 3) y tengo a NoneEs desbloqueada
+2C0
+Soy ( 3, 3) y tengo a 2C0Es desbloqueada
+Se ha creado una nueva cebra1C2en: Soy ( 2, 1) y tengo a 1C2
+Manada: 0L con: 1 pts.
+[33m0L0[0m
+Soy ( 2, 2) y tengo a [33m0L0[0mEs desbloqueada
+[33m0L0[0m
+Soy ( 1, 2) y tengo a 0C1Es desbloqueada
+[33m0L0[0m
+Soy ( 0, 3) y tengo a 0C0Es desbloqueada
+Animal: 0L0 ha cazado
+————————————————————————
+|     | [90m0H1[0m | 3C0 |     |
+————————————————————————
+| [90m0H2[0m | [90m0H0[0m | 1C2 | 1C0 |
+————————————————————————
+|     | 0C1 | [33m0L0[0m |     |
+————————————————————————
+| 0C0 |     |     | 2C0 |
+————————————————————————
+
+3C0
+Soy ( 3, 0) y tengo a NoneEs bloqueada
+3C0
+Soy ( 2, 0) y tengo a 3C0Es desbloqueada
+3C0
+Soy ( 3, 0) y tengo a NoneEs desbloqueada
+1C0
+Soy ( 3, 2) y tengo a NoneEs bloqueada
+1C0
+Soy ( 3, 0) y tengo a NoneEs bloqueada
+1C0
+Soy ( 3, 1) y tengo a NoneEs desbloqueada
+1C0
+Soy ( 3, 2) y tengo a NoneEs desbloqueada
+1C0
+Soy ( 3, 0) y tengo a 1C0Es desbloqueada
+0C0
+Soy ( 1, 3) y tengo a NoneEs bloqueada
+0C0
+Soy ( 0, 2) y tengo a NoneEs bloqueada
+0C0
+Soy ( 0, 3) y tengo a NoneEs desbloqueada
+0C0
+Soy ( 1, 3) y tengo a NoneEs desbloqueada
+0C0
+Soy ( 0, 2) y tengo a 0C0Es desbloqueada
+0C1
+Soy ( 0, 3) y tengo a NoneEs bloqueada
+0C1
+Soy ( 2, 3) y tengo a NoneEs bloqueada
+0C1
+Soy ( 1, 3) y tengo a NoneEs bloqueada
+0C1
+Soy ( 1, 2) y tengo a 0C1Es desbloqueada
+0C1
+Soy ( 0, 3) y tengo a NoneEs desbloqueada
+0C1
+Soy ( 2, 3) y tengo a NoneEs desbloqueada
+0C1
+Soy ( 1, 3) y tengo a NoneEs desbloqueada
+————————————————————————
+|     | [90m0H1[0m | 3C0 | 1C0 |
+————————————————————————
+| [90m0H2[0m | [90m0H0[0m | 1C2 |     |
+————————————————————————
+| 0C0 | 0C1 | [33m0L0[0m |     |
+————————————————————————
+|     |     |     | 2C0 |
+————————————————————————
+
+[90m0H1[0m
+Soy ( 2, 1) y tengo a 1C2Es bloqueada
+[90m0H1[0m
+Soy ( 2, 0) y tengo a 3C0Es bloqueada
+[90m0H1[0m Hienas: 3 vs Cebras: 5
+No puede cazar, inferioridad numerica
+[90m0H1[0m
+Soy ( 2, 1) y tengo a 1C2Es desbloqueada
+[90m0H1[0m
+Soy ( 2, 0) y tengo a 3C0Es desbloqueada
+[90m0H2[0m
+Soy ( 1, 2) y tengo a 0C1Es bloqueada
+[90m0H2[0m
+Soy ( 0, 2) y tengo a 0C0Es bloqueada
+[90m0H2[0m Hienas: 3 vs Cebras: 5
+No puede cazar, inferioridad numerica
+[90m0H2[0m
+Soy ( 1, 2) y tengo a 0C1Es desbloqueada
+[90m0H2[0m
+Soy ( 0, 2) y tengo a 0C0Es desbloqueada
+[33m0L0[0m
+Soy ( 2, 1) y tengo a 1C2Es bloqueada
+[33m0L0[0m
+Soy ( 1, 2) y tengo a 0C1Es bloqueada
+[33m0L0[0m
+Soy ( 3, 3) y tengo a 2C0Es bloqueada
+Se ha creado una nueva cebra2C1en: Soy ( 3, 2) y tengo a 2C1
+Manada: 0L con: 2 pts.
+[33m0L0[0m
+Soy ( 2, 1) y tengo a 1C2Es desbloqueada
+[33m0L0[0m
+Soy ( 1, 2) y tengo a 0C1Es desbloqueada
+[33m0L0[0m
+Soy ( 3, 3) y tengo a [33m0L0[0mEs desbloqueada
+Animal: 0L0 ha cazado
+[90m0H0[0m
+Soy ( 2, 0) y tengo a 3C0Es bloqueada
+[90m0H0[0m
+Soy ( 1, 2) y tengo a 0C1Es bloqueada
+[90m0H0[0m
+Soy ( 0, 2) y tengo a 0C0Es bloqueada
+[90m0H0[0m
+Soy ( 2, 1) y tengo a 1C2Es bloqueada
+[90m0H0[0m Hienas: 3 vs Cebras: 6
+No puede cazar, inferioridad numerica
+[90m0H0[0m
+Soy ( 2, 0) y tengo a 3C0Es desbloqueada
+[90m0H0[0m
+Soy ( 1, 2) y tengo a 0C1Es desbloqueada
+[90m0H0[0m
+Soy ( 0, 2) y tengo a 0C0Es desbloqueada
+[90m0H0[0m
+Soy ( 2, 1) y tengo a 1C2Es desbloqueada
+————————————————————————
+|     | [90m0H1[0m | 3C0 | 1C0 |
+————————————————————————
+| [90m0H2[0m | [90m0H0[0m | 1C2 |     |
+————————————————————————
+| 0C0 | 0C1 |     | 2C1 |
+————————————————————————
+|     |     |     | [33m0L0[0m |
+————————————————————————
+
+1C2
+Soy ( 3, 1) y tengo a NoneEs bloqueada
+1C2
+Soy ( 2, 2) y tengo a NoneEs bloqueada
+1C2
+Soy ( 2, 1) y tengo a NoneEs desbloqueada
+1C2
+Soy ( 3, 1) y tengo a 1C2Es desbloqueada
+1C2
+Soy ( 2, 2) y tengo a NoneEs desbloqueada
+Juego interrumpido por el usuario. Esperando matar hilos
+[33m0L0[0mSu casilla esta bloqueada: False
+0C0Su casilla esta bloqueada: False
+0C1Su casilla esta bloqueada: False
+1C0Su casilla esta bloqueada: False
+1C1Su casilla esta bloqueada: False
+2C0Su casilla esta bloqueada: False
+3C0Su casilla esta bloqueada: False
+1C2Su casilla esta bloqueada: False
+2C1Su casilla esta bloqueada: False
+[90m0H0[0mSu casilla esta bloqueada: False
+[90m0H1[0mSu casilla esta bloqueada: False
+[90m0H2[0mSu casilla esta bloqueada: False

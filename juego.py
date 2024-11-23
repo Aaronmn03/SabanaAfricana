@@ -8,7 +8,7 @@ from manadas.manada_hiena import ManadaHiena
 from manadas.manada_leon import ManadaLeon
 from tablero.casilla import Casilla
 
-fps = 60
+fps = 1
 class Juego:
     def __init__(self):
         self.configuracion = Configuracion()
@@ -18,7 +18,7 @@ class Juego:
         self.leones = []
         self.cebras = []
         self.hienas = []
-        
+        self.is_running = True
 
     def crear_entorno(self):
         matriz_aux = []
@@ -37,7 +37,7 @@ class Juego:
         self.crear_animales()
         while True:
             try:
-                os.system("cls" if os.name == "nt" else "clear")
+                #os.system("cls" if os.name == "nt" else "clear")
                 print(str(self))
                 time.sleep(1/fps) 
                 with self.ganador_lock:
@@ -46,7 +46,7 @@ class Juego:
                         self.finalizar()
                         break
             except KeyboardInterrupt:
-                os.system("cls" if os.name == "nt" else "clear")
+                #os.system("cls" if os.name == "nt" else "clear")
                 print("Juego interrumpido por el usuario. Esperando matar hilos")   
                 self.finalizar()      
                 print(str(self))            
@@ -83,18 +83,22 @@ class Juego:
                 restocebras -= 1
             self.manadas_cebras.append(ManadaCebra(self,self.casilla_aleatoria_vacia(), ncebras))                
     def finalizar(self):
+        self.is_running = False
         listas_animales = [self.leones, self.cebras, self.hienas]
         for lista in listas_animales:
             for animal in lista:
                 animal.activo = False
+                print(animal.__str__() + "Su casilla esta bloqueada: " + str(animal.posicion.es_bloqueada()))
                 
         for lista in listas_animales:
             for animal in lista:
-                animal.join()                               
+                animal.join()              
+                print("Animal  muerto: " + animal.__str__())                 
 
         todos_terminados = all(not animal.is_alive() for animal in self.leones + self.cebras + self.hienas)
         if todos_terminados:
             print("Todos los hilos han sido detenidos correctamente.")
+            exit()
         else:
             print("Algunos hilos no se han detenido correctamente.")                    
 
