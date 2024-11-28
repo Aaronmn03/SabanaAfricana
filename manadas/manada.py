@@ -15,10 +15,19 @@ class Manada:
         self.__class__.numero_manadas += 1
         self.id_tipo = id_tipo
         self.numero_creadas= 0
-
+        """
         for i in range(numero_animales):
             animal = self.anadir_animal( self.posicion_inicial)
-            self.posicion_inicial = self.entorno.obtener_casilla_adyacente_vacia(self.posicion_inicial)  
+            self.posicion_inicial = self.entorno.obtener_casilla_adyacente_vacia(self.posicion_inicial) 
+        """
+        posiciones_ocupadas = set()
+        for i in range(numero_animales):
+            posicion = self.entorno.obtener_casilla_manada_vacia(
+                self.posicion_inicial, posiciones_ocupadas
+            )
+            animal = self.anadir_animal(posicion)
+            posiciones_ocupadas.add(posicion)
+        
                  
 
     def anadir_animal(self, posicion):
@@ -34,8 +43,8 @@ class Manada:
             animal = Cebra(id, self.entorno, self, posicion)
             self.entorno.cebras.append(animal)
         self.numero_creadas += 1   
-        with self.posicion_inicial.lock:    
-            self.posicion_inicial.anadir_animal(animal)
+        with posicion.lock:    
+            posicion.anadir_animal(animal)
         self.animales.append(animal)
         animal.start()
         return animal

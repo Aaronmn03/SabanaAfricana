@@ -12,14 +12,13 @@ class Cebra(Animal):
         if self.activo:
             while self.activo:
                 debo_descansar = random.random() < 0.2
-                if debo_descansar:
-                    print(self.__str__() + " -> Esta descansando")
-                    time.sleep(random.uniform(4, 6))
-                    print(self.__str__() + " -> Ha dejado de descansar")                
+                if debo_descansar:           
+                    time.sleep(random.uniform(4, 6))                         
                 if not self.posicion.es_bloqueada():
                     self.posicion.bloquear() 
-                    posicion_aux = self.posicion   
-                    super().mover() 
+                    if self.activo:                       
+                        posicion_aux = self.posicion   
+                        super().mover() 
                     time.sleep(self.velocidad) 
         
 

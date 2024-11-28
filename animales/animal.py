@@ -25,11 +25,12 @@ class Animal(Thread):
         movimiento = random.choice(lista_aux)
         #print("Soy: " + str(self.id) + " y me he movido a:( " + str(self.posicion.x) + ", " + str(self.posicion.y) + ")")
         #self.posicion.__str__()        
-        self.posicion.vaciar()
-        posicion_aux = self.posicion
-        self.posicion = movimiento
-        posicion_aux.desbloquear()
-        self.posicion.anadir_animal(self)
+        if movimiento.es_vacia:
+            self.posicion.vaciar()
+            posicion_aux = self.posicion
+            self.posicion = movimiento
+            posicion_aux.desbloquear()
+            self.posicion.anadir_animal(self)
         for casilla in lista_movimientos:
             casilla.desbloquear()
             #print(self.__str__() + " -> " + casilla.__str__() + " Desbloqueada")

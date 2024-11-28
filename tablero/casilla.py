@@ -50,7 +50,7 @@ class Casilla:
         self.animal = animal
 
     def __str__(self):
-        return "Soy ( " + str(self.x) + ", " + str(self.y) +") y tengo a " + str(self.animal)
+        return "( " + str(self.x) + ", " + str(self.y) + ")"
     
     def __hash__(self):
         return hash((self.x, self.y))

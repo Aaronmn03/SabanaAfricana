@@ -1,6 +1,6 @@
 class Configuracion:
     def __init__(self):
-        """
+
         self.tamaño = input("Introduce el tamaño de la matriz: ")
         while not self.tamaño.isdigit() or int(self.tamaño) <= 3:
             print("Entrada inválida. Por favor, introduce un número entero o un numero más alto.")
@@ -51,12 +51,3 @@ class Configuracion:
         self.manadas_cebras = int(self.manadas_cebras)
         self.numero_hienas = self.numero_leones * 3
         self.numero_cebras = self.numero_leones * 6          
-        """
-        self.tamaño = 4
-        self.numero_leones = 1
-        self.numero_hienas = self.numero_leones * 3
-        self.numero_cebras = self.numero_leones * 6
-        self.manadas_leones = 2
-        self.manadas_hienas = 1
-        self.manadas_cebras = 4
-        

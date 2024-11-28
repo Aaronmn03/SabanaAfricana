@@ -15,21 +15,20 @@ class Hiena(Animal):
         while self.activo:
             debo_descansar = random.random() < 0.2
             if debo_descansar:
-                print(self.__str__() + " -> Esta descansando")
-                time.sleep(random.uniform(4, 6))
-                print(self.__str__() + " -> Ha dejado de descansar")            
+                time.sleep(random.uniform(4, 6))           
             if not self.posicion.es_bloqueada():
                 posicion_aux = self.posicion
                 #print(self.__str__() + "Esta intentando acceder a su posicion")            
                 self.posicion.bloquear() 
                 #print("Tengo mi posicion bloqueada y estoy haciendo cosas: " + self.__str__())
-                posibles_presas = self.comprobar_adyacentes_caza()
-                if not len(posibles_presas) == 0:
-                    #print("Voy a cazar " + self.__str__())
-                    self.cazar(posibles_presas)
-                else:            
-                    #print("No tengo caza posible, voy a moverme" + self.__str__())
-                    super().mover() 
+                if self.activo: 
+                    posibles_presas = self.comprobar_adyacentes_caza()
+                    if not len(posibles_presas) == 0:
+                        #print("Voy a cazar " + self.__str__())
+                        self.cazar(posibles_presas)
+                    else:            
+                        #print("No tengo caza posible, voy a moverme" + self.__str__())
+                        super().mover() 
                 time.sleep(self.velocidad) 
         
     def cazar(self, posibles_presas):
@@ -45,12 +44,14 @@ class Hiena(Animal):
                 self.posicion = casilla
                 self.posicion.anadir_animal(self)
                 presa.notificar_caza()
-                #print("Animal: " + super().__str__() + " ha cazado a: " + presa.__str__())                         
+                print("Animal: " + super().__str__() + " ha cazado a: " + presa.__str__())                         
                 for casilla in posibles_presas:
                     casilla.desbloquear()  
                     #print(self.__str__() + " -> " + casilla.__str__() + " Desbloqueada")              
                 with self.manada.lock:
                     self.manada.aumentar_puntuacion(1)
+                if not self.entorno.ganador == None:
+                    self.activo = False    
 
             else:
                 #print("No puede cazar, inferioridad numerica")

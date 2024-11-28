@@ -1,9 +1,10 @@
+from configuracion import Configuracion
 from juego import Juego
 
 
 def main():  
-    juego = Juego()
-    juego.comenzar()
+    configuracion = Configuracion()
+    juego = Juego(configuracion)
 
     
 if __name__ == "__main__":

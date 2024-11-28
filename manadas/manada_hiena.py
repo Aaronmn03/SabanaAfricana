@@ -12,16 +12,17 @@ class ManadaHiena(Manada):
 
     def aumentar_puntuacion(self, aumento):
         self.puntuacion += aumento
-        print("Manada: " + self.__str__())
-        if self.puntuacion >= 20:
+        #print("Manada: " + self.__str__())
+        if self.puntuacion >= 20 and self.entorno.ganador == None:
             with self.entorno.ganador_lock:
                 self.entorno.confirmar_ganador(self)
             
 
     def eliminar_animal(self, animal):
-        animal.activo = False
-        animal.join()
-        self.entorno.eliminar_animal(animal)
+        if animal.activo == True:        
+            animal.activo = False
+            animal.join()
+            self.entorno.eliminar_animal(animal)
     
     def __str__(self):
         return super().__str__() + " con: " + str(self.puntuacion) + " pts."

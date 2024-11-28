@@ -14,22 +14,20 @@ class Leon(Animal):
 
     def run(self):
         time.sleep(self.velocidad)
-        while self.activo:
+        while self.activo and self.entorno.is_running:
             debo_descansar = random.random() < 0.4
             if debo_descansar:
-                print(self.__str__() + " -> Esta descansando")
                 time.sleep(random.uniform(4, 6))
-                print(self.__str__() + " -> Ha dejado de descansar")
-            posicion_aux = self.posicion
             #print(self.__str__() + "Esta intentando acceder a su posicion")
             self.posicion.bloquear()    
             #print(self.__str__() + "Ha accedido al mutex de la posicion")
-            posibles_presas = self.comprobar_adyacentes_caza()
-            if not len(posibles_presas) == 0:
-                #print("Voy a cazar" + self.__str__())
-                self.cazar(posibles_presas)
-            else:
-                super().mover() 
+            if self.activo:             
+                posibles_presas = self.comprobar_adyacentes_caza()
+                if not len(posibles_presas) == 0:
+                    #print("Voy a cazar" + self.__str__())
+                    self.cazar(posibles_presas)
+                else:
+                    super().mover() 
             time.sleep(self.velocidad)
         
     def cazar(self, posibles_presas):
@@ -52,9 +50,12 @@ class Leon(Animal):
             posicion_aux.desbloquear()
             self.posicion.anadir_animal(self)
             presa.notificar_caza()
+            print("Animal: " + super().__str__() + " ha cazado a -> " + presa.__str__())
             with self.manada.lock:
+                #print("Aumento puntos: " + self.__str__())
                 self.manada.aumentar_puntuacion(puntos)
-            #print("Animal: " + super().__str__() + " ha cazado")
+            if not self.entorno.ganador == None:
+                self.activo = False
         finally:
             for casilla in posibles_presas:
                 casilla.desbloquear()

@@ -8,17 +8,13 @@ class ManadaCebra(Manada):
         
 
     def eliminar_animal(self, animal):
-        animal.activo = False
-        animal.join()
-        self.entorno.eliminar_animal(animal)
-        print("Animal matado: " + animal.__str__())
-        self.posicion_inicial = self.entorno.casilla_aleatoria_vacia()
-        print("Posicion decidida")
-        with self.entorno.ganador_lock:
-            print("Acceso al entorno dado")
+        if animal.activo == True:
+            animal.activo = False
+            animal.join()
+            self.entorno.eliminar_animal(animal)
+            #print("Animal matado: " + animal.__str__())
+            self.posicion_inicial = self.entorno.casilla_aleatoria_vacia()
             if self.entorno.ganador is None and self.entorno.is_running:
-                print("Añadiendo la cebra...")
                 new_animal = super().anadir_animal(self.posicion_inicial)
-                print("Se ha creado una nueva cebra" + new_animal.__str__() + "en: " + self.posicion_inicial.__str__())
-            else:
-                print("Si")
+                print("Se ha creado una nueva cebra: " + new_animal.__str__() + " en: " + self.posicion_inicial.__str__())
+
