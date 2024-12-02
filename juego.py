@@ -28,6 +28,7 @@ class Juego:
         self.is_running = True
         self.TAM_CELDA = (ALTO - 50) // self.configuracion.tamaño
         self.ventana = pygame.display.set_mode((ANCHO, ALTO))
+        self.comenzar()
 
     def crear_entorno(self):
         matriz_aux = []
@@ -46,7 +47,6 @@ class Juego:
         self.crear_animales()
         while True:
             try:
-                
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.is_running = False
